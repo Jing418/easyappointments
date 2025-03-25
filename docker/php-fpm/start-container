@@ -1,19 +1,19 @@
 #!/bin/bash
 
-echo "âžœ Ignore Permission Changes"
+echo "âž?Ignore Permission Changes"
 git config core.fileMode false
 
-echo "âžœ Set Correct Permissions"
+echo "âž?Set Correct Permissions"
 chmod -R 777 storage
 
-echo "âžœ Install Composer Dependencies"
+echo "âž?Install Composer Dependencies"
 [[ -d vendor ]] || composer install
 
-echo "âžœ Install NPM Dependencies"
+echo "âž?Install NPM Dependencies"
 [[ -d node_modules ]] || npm install
 
-echo "âžœ Build Project Assets"
+echo "âž?Build Project Assets"
 [[ -d assets/vendor ]] || npx gulp compile
 
-echo "âžœ Listen To Incoming Requests"
+echo "âž?Listen To Incoming Requests"
 php-fpm
