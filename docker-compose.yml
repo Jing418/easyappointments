@@ -103,3 +103,20 @@ services:
     depends_on:
       - openldap
 
+  notify-service:
+    build: ./docker/notify-service
+    ports:
+      - "5000:5000"
+    environment:
+      - EA_API_TOKEN=${EA_API_TOKEN}
+
+  langchain-app:
+    build:
+      context: ./docker/langchain-app
+    image: langchain-app:latest
+    ports:
+      - "5001:5000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    volumes:
+      - ./docker/langchain-app:/app
